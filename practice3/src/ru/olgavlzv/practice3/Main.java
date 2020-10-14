@@ -189,41 +189,42 @@ public class Main {
         System.out.println("Введите номер задания от 1 до 10");
         Scanner in = new Scanner(System.in);
         int s = in.nextInt();
-        switch(s) {
-            case 1:
+        switch (s) {
+            case 1 -> {
                 System.out.println("Задание 1");
                 System.out.println("Введите параметры a, b и c для квадратного уравнения");
                 int a = in.nextInt();
                 int b = in.nextInt();
                 int c = in.nextInt();
                 System.out.println("В уравнении " + solutions(a, b, c) + " решений");
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("Задание 2");
                 System.out.println("Введите строку");
                 String str2 = in.nextLine();
                 System.out.println("Второе вхождение \"zip\" в строку: " + findZip(str2));
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("Задание 3");
                 System.out.println("Введите число для проверки");
                 int num = in.nextInt();
                 System.out.println("Данное число является совершенным: " + checkPerfect(num));
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.println("Задание 4");
                 System.out.println("Введите строку");
                 String old = in.nextLine();
                 System.out.println(flipEndChars(old));
-                break;
-            case 5:
+            }
+            case 5 -> {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Задание 5");
                 System.out.println("Введите число в 16-ричной система счисления");
-                String code = in.nextLine();;
+                String code = in.nextLine();
+                ;
                 System.out.println("Это 16-ричное число: " + isValidHexCode(code));
-                break;
-            case 6:
+            }
+            case 6 -> {
                 System.out.println("Задание 6");
                 System.out.println("Введите количество элементов первого массива");
                 int n1 = in.nextInt();
@@ -240,30 +241,26 @@ public class Main {
                     arr2[j] = in.nextInt();
                 }
                 System.out.println("В данных массивах одинаковое количество уникальных элементов: " + same(arr1, arr2));
-                break;
-            case 7:
+            }
+            case 7 -> {
                 System.out.println("Задание 7");
                 System.out.println("Введите целое число");
                 int number = in.nextInt();
                 System.out.println("Число является числом Капрекара: " + isKaprekar(number));
-                break;
-            case 8:
+            }
+            case 8 -> {
                 System.out.println("Задание 8");
                 System.out.println("Введите");
-
-                break;
-            case 9:
+            }
+            case 9 -> {
                 System.out.println("Задание 9");
                 System.out.println("Введите");
-
-                break;
-            case 10:
+            }
+            case 10 -> {
                 System.out.println("Задание 10");
                 System.out.println("");
-
-                break;
-            default:
-                System.out.println("Вы ввели некорректный номер");
+            }
+            default -> System.out.println("Вы ввели некорректный номер");
         }
     }
 }
