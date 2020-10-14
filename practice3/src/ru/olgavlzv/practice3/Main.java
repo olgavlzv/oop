@@ -182,11 +182,7 @@ public class Main {
         }
         a = Integer.parseInt(as);
         b = Integer.parseInt(bs);
-        if (a + b == num) {
-            return true;
-        } else {
-            return false;
-        }
+        return a + b == num;
     }
 
     public static void main(String[] args) {
