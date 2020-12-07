@@ -49,14 +49,7 @@ public class Main {
                 sum = sum + i;
             }
         }
-        if (sum == num)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return sum == num;
     }
 
     public static String flipEndChars(String old) {
@@ -89,8 +82,8 @@ public class Main {
         boolean checking = true;
         if (code.length() == 7 && code.charAt(0) == '#') {
             for (int i = 1; i < 7; i++) {
-                if (!((code.charAt(i) >= '0' && code.charAt(i) <= '9') || (code.charAt(i) >= 'A' && code.charAt(i)
-                        <= 'F') || (code.charAt(i) >= 'a' && code.charAt(i) <= 'f'))) {
+                if (!((code.charAt(i) >= '0' && code.charAt(i) <= '9') || (code.charAt(i) >= 'A' && code.charAt(i) <= 'F')
+                        || (code.charAt(i) >= 'a' && code.charAt(i) <= 'f'))) {
                     checking = false;
                     break;
                 }
@@ -108,7 +101,7 @@ public class Main {
         Random random = new Random();
         int k = 0;
         int c = 0;
-        boolean exitWhile = false; // Creating random number with which we will remove repetitions from an array
+        boolean exitWhile = false;
         int notInArray = 0;
         while (!exitWhile) {
             boolean exitCycle = true;
@@ -129,26 +122,26 @@ public class Main {
                 exitWhile = true;
             }
         }
-        for (int i = 0; i < arr1.length; i++){ // Replace repeating numbers in first array
+        for (int i = 0; i < arr1.length; i++){
             for (int j = 0; j < arr1.length; j++) {
                 if (arr1[i] == arr1[j] && i != j) {
                     arr1[j] = notInArray;
                 }
             }
         }
-        for (int i : arr1) { // Finding unique numbers in first array
+        for (int i : arr1) { //уникальные числа в первом массиве
             if (i != notInArray) {
                 k += 1;
             }
         }
-        for (int i = 0; i < arr2.length; i++) { // Replace repeating numbers in second array
+        for (int i = 0; i < arr2.length; i++) {
             for (int j = 1; j < arr2.length; j++) {
                 if (arr2[i] == arr2[j] && i != j) {
                     arr2[j] = notInArray;
                 }
             }
         }
-        for (int i : arr2) { // Finding unique numbers in second array
+        for (int i : arr2) { //уникальные числа во втором массиве
             if (i != notInArray) {
                 c += 1;
             }
@@ -167,22 +160,106 @@ public class Main {
         – Учитывая положительное целое число n, реализуйте функцию, которая возвращает true,
         если это число Капрекара, и false, если это не так.*/
         int sqr = num * num;
+        String sqrs = Integer.toString(sqr);
         int a, b; //a - левое число, b - правое число
         String as = "", bs = "";
-        int length = String.valueOf(Math.abs(sqr)).length(); //длина квадрата числа
+        int length = sqrs.length(); //длина квадрата числа
         if (length == 1) {
             as += 0;
-            bs += length;
+            bs += 1;
         } else if (length % 2 == 0) {
-            as += Integer.toString(sqr).substring(0, length / 2 - 1);
-            bs += Integer.toString(sqr).substring(length / 2, length - 1);
+            as += sqrs.substring(0, length / 2);
+            bs += sqrs.substring(length / 2, length);
         } else {
-            as += Integer.toString(sqr).substring(0, length / 2);
-            bs += Integer.toString(sqr).substring(length / 2 + 1, length);
+            as += sqrs.substring(0, length / 2);
+            bs += sqrs.substring(length / 2, length);
         }
         a = Integer.parseInt(as);
         b = Integer.parseInt(bs);
         return a + b == num;
+    }
+
+    public static String longestZero (String num) {
+        /*Напишите функцию, которая возвращает самую длинную последовательность
+        последовательных нулей в двоичной строке. */
+        int k = 0, max = 0;
+        String zeros = "";
+        char[] strtochar = num.toCharArray();
+        for (int i = 0; i < num.length(); i++) {
+            if (strtochar[i] == '0') {
+                k++;
+            } else {
+                 if (k > max) {
+                     max = k;
+                 }
+                 k = 0;
+            }
+        }
+        for (int i = 0; i < max; i++) {
+            zeros += "0";
+        }
+        return zeros;
+    }
+
+    public static int nextPrime (int num) {
+        /*Если задано целое число, создайте функцию, которая возвращает следующее
+        простое число. Если число простое, верните само число.*/
+        int prime = num;
+        if (num < 2) {
+            return 2;
+        } else {
+            if (isPrime(num)) {
+                return num;
+            } else {
+                while (!isPrime(prime)) {
+                    prime++;
+                }
+                return prime;
+            }
+        }
+
+    }
+
+    public static boolean isPrime(int n) {
+        int m = 0;
+        for (int i = 1; i < n; i++) {
+            if (n % i == 0) {
+                m++;
+            }
+        }
+        if (m < 2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public static boolean rightTriangle(int a, int b, int c) {
+        /*Учитывая три числа, x, y и z, определите, являются ли они ребрами
+        прямоугольного треугольника.*/
+        int maxValue = 0;
+        int firstValue = 0;
+        int secondValue = 0;
+        if (a > b && a > c) {
+            maxValue = a;
+            firstValue = b;
+            secondValue = c;
+        }
+        else if (b > a && b > c) {
+            maxValue = b;
+            firstValue = a;
+            secondValue = c;
+        }
+        else if (c > a && c > b) {
+            maxValue = c;
+            firstValue = a;
+            secondValue = b;
+        }
+        else {
+            return false;
+        }
+        return maxValue * maxValue == firstValue * firstValue + secondValue * secondValue;
     }
 
     public static void main(String[] args) {
@@ -201,7 +278,8 @@ public class Main {
             case 2 -> {
                 System.out.println("Задание 2");
                 System.out.println("Введите строку");
-                String str2 = in.nextLine();
+                Scanner in2 = new Scanner(System.in);
+                String str2 = in2.nextLine();
                 System.out.println("Второе вхождение \"zip\" в строку: " + findZip(str2));
             }
             case 3 -> {
@@ -213,22 +291,22 @@ public class Main {
             case 4 -> {
                 System.out.println("Задание 4");
                 System.out.println("Введите строку");
-                String old = in.nextLine();
+                Scanner sc = new Scanner(System.in);
+                String old = sc.nextLine();
                 System.out.println(flipEndChars(old));
             }
             case 5 -> {
-                Scanner sc = new Scanner(System.in);
                 System.out.println("Задание 5");
-                System.out.println("Введите число в 16-ричной система счисления");
-                String code = in.nextLine();
-                ;
-                System.out.println("Это 16-ричное число: " + isValidHexCode(code));
+                System.out.println("Введите число в 16-ричной системе счисления");
+                Scanner sc1 = new Scanner(System.in);
+                String code = sc1.nextLine();
+                System.out.println("Это hex-код: " + isValidHexCode(code));
             }
             case 6 -> {
                 System.out.println("Задание 6");
                 System.out.println("Введите количество элементов первого массива");
                 int n1 = in.nextInt();
-                System.out.println("Введите первоый массив");
+                System.out.println("Введите первый массив");
                 int[] arr1 = new int[n1];
                 for (int i = 0; i < n1; i++) {
                     arr1[i] = in.nextInt();
@@ -250,15 +328,24 @@ public class Main {
             }
             case 8 -> {
                 System.out.println("Задание 8");
-                System.out.println("Введите");
+                System.out.println("Введите число");
+                Scanner instr = new Scanner(System.in);
+                String str = instr.nextLine();
+                System.out.println("Самая длинная последовательность нулей в строке: " + longestZero(str));
             }
             case 9 -> {
                 System.out.println("Задание 9");
-                System.out.println("Введите");
+                System.out.println("Введите число");
+                int num9 = in.nextInt();
+                System.out.println("Следующее простое число: " + nextPrime(num9));
             }
             case 10 -> {
                 System.out.println("Задание 10");
-                System.out.println("");
+                System.out.println("Введите длины сторон треугольника");
+                int x = in.nextInt();
+                int y = in.nextInt();
+                int z = in.nextInt();
+                System.out.println("Треугольник является прямоугольным: " + rightTriangle(x, y, z));
             }
             default -> System.out.println("Вы ввели некорректный номер");
         }

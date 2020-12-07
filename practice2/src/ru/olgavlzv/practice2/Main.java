@@ -135,7 +135,7 @@ public class Main {
     }
 
     //TASK9
-    public static boolean isSuffix(String s1, String s2) {
+    public static boolean isPrefix(String s1, String s2) {
         /*Создайте две функции: isPrefix(word, prefix-) и isSuffix (word, -suffix).
         – isPrefix должен возвращать true, если он начинается с префиксного аргумента.
         – isSuffix должен возвращать true, если он заканчивается аргументом суффикса.
@@ -154,7 +154,7 @@ public class Main {
         }
     }
 
-    public static boolean isPrefix(String s1, String s2) {
+    public static boolean isSuffix(String s1, String s2) {
         /*Создайте две функции: isPrefix(word, prefix-) и isSuffix (word, -suffix).
         – isPrefix должен возвращать true, если он начинается с префиксного аргумента.
         – isSuffix должен возвращать true, если он заканчивается аргументом суффикса.
@@ -177,7 +177,7 @@ public class Main {
         /*Создайте функцию, которая принимает число (шаг) в качестве аргумента и
         возвращает количество полей на этом шаге последовательности.*/
         int t = 0;
-        for (int i = 0; i < step; i++) {
+        for (int i = 1; i <= step; i++) {
             if (i % 2 == 1) {
                 t += 3;
             }
@@ -195,9 +195,10 @@ public class Main {
         int s = in.nextInt();
         switch(s) {
             case 1:
+                Scanner sc = new Scanner(System.in);
                 System.out.println("Задание 1");
                 System.out.println("Введите строку");
-                String str = in.nextLine();
+                String str = sc.nextLine();
                 System.out.println("Введите n");
                 int n = in.nextInt();
                 System.out.println(task1(str, n));
@@ -233,10 +234,10 @@ public class Main {
                 }
                 break;
             case 5:
-                Scanner sc = new Scanner(System.in);
+                Scanner sc1 = new Scanner(System.in);
                 System.out.println("Задание 5");
                 System.out.println("Введите число с точкой");
-                String str5 = sc.nextLine();
+                String str5 = sc1.nextLine();
                 System.out.println("Число цифр после запятой " + task5(str5));
                 break;
             case 6:
@@ -248,7 +249,8 @@ public class Main {
             case 7:
                 System.out.println("Задание 7");
                 System.out.println("Введите почтовый интекс");
-                String index = in.nextLine();
+                Scanner sc2 = new Scanner(System.in);
+                String index = sc2.nextLine();
                 System.out.println(task7(index));
                 break;
             case 8:

@@ -15,5 +15,4 @@ public class task1 {
         int b = t.nextInt();
         System.out.println("Остаток от деления " + a + " на "+ b + " равен " + a%b);
     }
-
 }
