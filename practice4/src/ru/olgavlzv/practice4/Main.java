@@ -48,12 +48,12 @@ public class Main {
         }
     }
 
-    public static String[] splitBkt(String oldaStr) {
+    public static String[] splitBkt(String str) {
         /*Напишите функцию, которая группирует строку в кластер скобок. Каждый кластер
         должен быть сбалансирован.*/
 
         boolean checkBkt = true;
-        char[] aArray = oldaStr.toCharArray();
+        char[] aArray = str.toCharArray();
         String[] resArray = new String[0];
         for (char i : aArray) {
             if (!(i == (int) '(' || i == (int) ')')) {
@@ -68,12 +68,12 @@ public class Main {
                 if (aArray[i] == ')') count1++;
                 if (count0 == count1) {
                     resArray = Arrays.copyOf(resArray, resArray.length + 1);
-                    resArray[resArray.length - 1] = oldaStr.substring(preI, i+1);
+                    resArray[resArray.length - 1] = str.substring(preI, i+1);
                     preI = i + 1;
                 }
             }
             resArray = Arrays.copyOf(resArray, resArray.length + 1);
-            resArray[resArray.length - 1] = oldaStr.substring(preI);
+            resArray[resArray.length - 1] = str.substring(preI);
         }
         return resArray;
     }
@@ -195,35 +195,35 @@ public class Main {
         }
     }
 
-    public static int bugger(int a) {
+    public static int bugger(int num) {
         /*Создайте функцию, которая принимает число и возвращает его мультипликативное постоянство, которое
         представляет собой количество раз, которое вы должны умножать цифры в num, пока не достигнете одной цифры.*/
 
         int count = 0;
-        while (a >= 10) {
+        while (num >= 10) {
             int mlt = 1, mod;
-            while (a != 0) {
-                mod = a % 10;
+            while (num != 0) {
+                mod = num % 10;
                 mlt *= mod;
-                a = a / 10;
+                num = num / 10;
             }
-            a = mlt;
+            num = mlt;
             count++;
         }
         return count;
     }
 
-    public static String toStarShorthand(String a) { // 4.7
+    public static String toStarShorthand(String str) { // 4.7
         /*Напишите функцию, которая преобразует строку в звездную стенографию.
         Если символ повторяется n раз, преобразуйте его в символ*n. */
 
         int i = 1, count = 1;
         String res = "";
-        while (i < a.length()) {
-            if (a.charAt(i) == a.charAt(i - 1)) {
+        while (i < str.length()) {
+            if (str.charAt(i) == str.charAt(i - 1)) {
                 count++;
-                if (a.length() - 1 == i){
-                    res += a.charAt(i) + "*" + count;
+                if (str.length() - 1 == i){
+                    res += str.charAt(i) + "*" + count;
                     break;
                 }
                 else
@@ -231,13 +231,13 @@ public class Main {
             }
             else {
                 if (count == 1) {
-                    res += a.charAt(i - 1);
-                    if (i == a.length() - 1) {
-                        res += a.charAt(i);
+                    res += str.charAt(i - 1);
+                    if (i == str.length() - 1) {
+                        res += str.charAt(i);
                     }
                 }
                 else {
-                    res += a.charAt(i - 1) + "*" + count;
+                    res += str.charAt(i - 1) + "*" + count;
                 }
                 count = 1;
                 i++;
@@ -246,16 +246,16 @@ public class Main {
         return res;
     }
 
-    public static boolean doesRhyme(String s, String s2) { // 4.8
+    public static boolean doesRhyme(String s1, String s2) { // 4.8
         /*Создайте функцию, которая возвращает true, если две строки рифмуются, и false в противном случае.
         Для целей этого упражнения две строки рифмуются, если последнее слово из каждого предложения содержит
         одни и те же гласные. */
 
         String c = "";
         String k = "";
-        int a = s.lastIndexOf(" ");
+        int a = s1.lastIndexOf(" ");
         int b = s2.lastIndexOf(" ");
-        String subs = s.substring(a);
+        String subs = s1.substring(a);
         String subs2 = s2.substring(b);
         for (char l:subs.toCharArray()) {
             if ((l=='a')||(l=='e')||(l=='i')||(l=='o')||(l=='u')||(l=='y')||(l=='A')||(l=='E')||(l=='I')||(l=='O')||(l=='U')||(l=='Y')){
@@ -346,7 +346,7 @@ public class Main {
         switch (s) {
             case 1 -> {
                 System.out.println("Задание 1");
-                System.out.println("Введите количество слов в строке, количество слов в уже новых строках," +
+                System.out.println("Введите количество слов в строке, количество  новых строк," +
                         " и саму строку");
                 Scanner in1 = new Scanner(System.in);
                 Scanner sc1 = new Scanner(System.in);
@@ -354,14 +354,19 @@ public class Main {
                 int k = in1.nextInt();
                 String str1 = sc1.nextLine();
                 System.out.println("Правильно оформленный текст:");
-                essay(n,k,str1);
+                essay(n, k, str1);
             }
             case 2 -> {
                 System.out.println("Задание 2");
                 System.out.println("Введите строку, состоящей из круглых скобок");
                 Scanner sc2 = new Scanner(System.in);
                 String str2 = sc2.nextLine();
-                System.out.println("Полученные кластеры из скобок: " + splitBkt(str2));
+                String[] newkl = splitBkt(str2);
+                System.out.println("Полученные кластеры из скобок: ");
+                System.out.print("Результат: ");
+                for (String str : newkl) {
+                    System.out.print(Arrays.toString(splitBkt(str)));
+                }
             }
             case 3 -> {
                 System.out.println("Задание 3");
@@ -419,7 +424,7 @@ public class Main {
                 Scanner sc9 = new Scanner(System.in);
                 String num1 = sc9.nextLine();
                 String num2 = sc9.nextLine();
-                System.out.println("Число повторяется три раза подряд в num1 и два раза подряд в num2"
+                System.out.println("Число повторяется три раза подряд в num1 и два раза подряд в num2: "
                         + trouble(num1, num2));
             }
             case 10 -> {
@@ -428,7 +433,7 @@ public class Main {
                 Scanner sc10 = new Scanner(System.in);
                 String str = sc10.nextLine();
                 String symb = sc10.nextLine();
-                System.out.println("Уникальных символов в строке: " + trouble(str, symb));
+                System.out.println("Уникальных символов в строке: " + countUniqueBooks(str, symb));
             }
             default -> System.out.println("Вы ввели некорректный номер");
         }
